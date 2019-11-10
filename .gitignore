@@ -737,5 +737,5 @@ public/
 # End of https://www.gitignore.io/api/node,csharp,aspnetcore,visualstudio,visualstudiocode
 
 #ignore node_module and dist
-/frontend/node_modules
-/frontend/dist
+/front-end/apiMastery/node_modules
+/front-end/apiMastery/dist
