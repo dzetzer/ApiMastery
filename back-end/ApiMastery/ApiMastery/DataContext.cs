@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ApiMastery.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,9 @@ namespace ApiMastery
 {
     public class DataContext : DbContext
     {
-        public DbSet<> Albums { get; set; }
+        public DbSet<Series> Series { get; set; }
+        public DbSet<Game> Games { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

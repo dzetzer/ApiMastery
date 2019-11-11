@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApiMastery.Models;
 using ApiMastery.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,7 +29,9 @@ namespace ApiMastery
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<DataContext>();
-            services.AddScoped<IRepository<>, Repository>();
+            services.AddScoped<IRepository<Series>, SeriesRepository>();
+            services.AddScoped<IRepository<Game>, GameRepository>();
+            services.AddScoped<IRepository<Comment>, CommentRepository>();
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
