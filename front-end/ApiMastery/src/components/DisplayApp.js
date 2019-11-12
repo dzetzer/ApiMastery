@@ -14,4 +14,4 @@ class DisplayApp extends Component {
     }
 }
 
-export default AppMain;
+export default DisplayApp;
