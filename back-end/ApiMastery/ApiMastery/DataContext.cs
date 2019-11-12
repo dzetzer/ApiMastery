@@ -21,6 +21,15 @@ namespace ApiMastery
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Series>().HasData(
+                new Series(1,"TestSeries")
+            );
+            modelBuilder.Entity<Game>().HasData(
+                new Game(1,"TestGame",1)
+            );
+            modelBuilder.Entity<Comment>().HasData(
+                new Comment(1, "TestComment", "TestBody", 1)
+            );
             base.OnModelCreating(modelBuilder);
         }
     }
