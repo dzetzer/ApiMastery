@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 
 class Sidebar extends Component {
+    constructor(sidebarObjects)
+    {
+        this.sidebarObjects = sidebarObjects;
+    }
     render()
     {
         return (
