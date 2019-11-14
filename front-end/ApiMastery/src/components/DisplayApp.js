@@ -7,8 +7,8 @@ class DisplayApp extends Component {
     {
         return (
             <div>
-                <Sidebar/>
-                <Body/>
+                <Sidebar sidebarObjects=""/>
+                <Body bodyObject=""/>
             </div>
         );
     }
