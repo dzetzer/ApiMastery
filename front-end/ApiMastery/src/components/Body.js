@@ -4,6 +4,7 @@ class Body extends Component {
     constructor(bodyObject, modelId)
     {
         this.bodyObject = bodyObject;
+        this.modelId = modelId;
     }
     render()
     {
@@ -26,7 +27,6 @@ class Body extends Component {
                         `;
                     })
                     .join("")}
-                    
                 </section>
             );
         }

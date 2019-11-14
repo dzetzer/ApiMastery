@@ -10,7 +10,13 @@ class Sidebar extends Component {
         return (
             <div>
                 <section id="sidebar-list">
-                    <span class="sidebar-item">Test</span>
+                ${sidebarObjects
+                    .map(object => {
+                        return `
+                            <span class="sidebar-item">${object.name}</span>
+                        `;
+                    })
+                    .join("")}
                 </section>
             </div>
         );
