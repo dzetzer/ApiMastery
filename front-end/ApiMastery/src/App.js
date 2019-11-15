@@ -4,8 +4,6 @@ import DisplayApp from "./components/DisplayApp";
 const Sidebar = document.querySelector(".sidebar");
 const Body = document.querySelector(".body");
 
-
-
 function navData()
 {
   apiActions.getRequest("https://localhost:44386/api/series", series => {
