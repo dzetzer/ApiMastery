@@ -1,34 +1,28 @@
 import React, {Component} from 'react';
-import React, {useState} from 'react';
-import Navigation from "./Navigation";
+import {useState} from 'react';
+import apiActions from '../api/ApiActions'
 import Body from "./Body";
 import Sidebar from "./Sidebar";
 
-const [sidebarData, setSidebarData] = useState(Navigation.navData());
-const [bodyData, setBodyData] = useState();
+function navData()
+{
+  apiActions.getRequest("https://localhost:44386/api/series", series);
+  return series;
+}
+
+const [sidebarData, setSidebarData] = useState(navData());
+const [bodyData, setBodyData] = useState(null);
 
 function DisplayApp() {
-    
-
-    function selectSeries(selectedOption) 
-    {
-        setBodyData(selectedOption);
-    };
-    function selectGame(selectedOption)
-    {
-        setSidebarData(selectedOption.games);
-        setBodyData(selectedOption);
-    };
-
     render()
     {
         return (
             <div id="app">
                 <div id="sidebar">
-                    <Sidebar sidebarObjects={sidebarData}/>
+                    {/* <Sidebar sidebarObjects={sidebarData}/> */}
                 </div>
                 <div id="body">
-                    <Body bodyObject={bodyData}/>
+                    {/* <Body bodyObject={bodyData}/> */}
                 </div>
             </div>
         );

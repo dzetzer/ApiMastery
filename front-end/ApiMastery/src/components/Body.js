@@ -1,24 +1,17 @@
 import React, {Component} from 'react';
 
 class Body extends Component {
-    constructor(bodyObject, modelId)
+    constructor(bodyObject)
     {
         this.bodyObject = bodyObject;
-        this.modelId = modelId;
     }
     render()
     {
-        //series
-        if(modelId = 0)
-        {
-            parentSection =
-            (
+        return (
+            <div>
                 <section id="body-parent">
-                    <h1 onClick={} id="parent-name">${bodyObject.name}</h1>
+                    <h1 id="parent-name">${bodyObject.name}</h1>
                 </section>
-            );
-            childrenSection = 
-            (
                 <section id="body-child-list">
                     ${bodyObject.games
                     .map(game => {
@@ -28,34 +21,6 @@ class Body extends Component {
                     })
                     .join("")}
                 </section>
-            );
-        }
-        //game
-        else
-        {
-            parentSection =
-            (
-                <section id="body-parent">
-                    <h1 id="parent-name">${bodyObject.name}</h1>
-                </section>
-            );
-            childrenSection = 
-            (
-                <section id="body-child-list">
-                    ${bodyObject.comments
-                    .map(comment => {
-                        return (
-                            <span onClick={} class="body-child-item">${comment.title}</span>
-                        );
-                    })
-                    .join("")}
-                </section>
-            );
-        }
-        return (
-            <div>
-                ${parentSection}
-                ${childrenSection}
             </div>
         );
     }

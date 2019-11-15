@@ -1,17 +1,13 @@
 import React, {Component} from 'react';
 import DisplayApp from "./DisplayApp"
 
-function optionSelect(optionSelected)
-{
-    DisplayApp.sidebarData = optionSelected;
-};
+function
 
 class Sidebar extends Component {
     constructor(sidebarObjects)
     {
         this.sidebarObjects = sidebarObjects;
     }
-
     render()
     {
         return (
