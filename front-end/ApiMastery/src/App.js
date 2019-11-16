@@ -49,7 +49,7 @@ export default class App extends Component {
   };
 
   render (){
-    const { fetched, loading, species } = this.state;
+    const { fetched, loading, sideBarData } = this.state;
 
     let content;
 
