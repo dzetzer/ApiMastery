@@ -9,6 +9,11 @@ class Sidebar extends Component {
         }
     
     }
+    
+    selectItem() {
+        console.log("clicked")
+    }
+
     render()
     {
         const sideBarData = this.state.sideBarData;
@@ -16,8 +21,8 @@ class Sidebar extends Component {
             
             <section id="sidebar-list">
             {sideBarData
-                .map(object => {
-                    return <span class="sidebar-item">{object.name}</span>
+                .map((object, i) => {
+                    return <span onClick={this.selectItem} className="sidebar-item" key={i}>{object.name}</span>
                 })}
             </section>
         );
