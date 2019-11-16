@@ -1,18 +1,16 @@
 import React, {Component} from 'react';
 import DisplayApp from "./DisplayApp"
 
-function
-
 class Sidebar extends Component {
-    constructor(sidebarObjects)
+    constructor(sideBarData)
     {
-        this.sidebarObjects = sidebarObjects;
+        this.sideBarData = sideBarData;
     }
     render()
     {
         return (
             <section id="sidebar-list">
-            ${sidebarObjects
+            ${sideBarData
                 .map(object => {
                     return 
                     (
