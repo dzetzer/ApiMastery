@@ -10,8 +10,10 @@ class Sidebar extends Component {
     
     }
     
-    selectItem() {
-        console.log("clicked")
+    selectItem(e) {
+        const seriesId = e.target.value;
+        props.selectItem(seriesId);
+        console.log(seriesId)
     }
 
     render()
@@ -22,7 +24,7 @@ class Sidebar extends Component {
             <section id="sidebar-list">
             {sideBarData
                 .map((object, i) => {
-                    return <span onClick={this.selectItem} className="sidebar-item" key={i}>{object.name}</span>
+                    return <button onClick={this.selectItem} className="sidebar-item" key={i} value={object.seriesId}>{object.name}</button>
                 })}
             </section>
         );

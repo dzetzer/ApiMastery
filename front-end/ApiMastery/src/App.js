@@ -26,17 +26,15 @@ export default class App extends Component {
     super(props);
       this.state = {
         sideBarData: [],
+        bodyData: null,
         fetched: false,
         loading: false  
       }
   }
-
-  componentWillMount() {
+  componentDidMount() {
         this.setState({
         loading: true 
     });
-
-
     fetch("http://localhost:52305/api/series")
     .then(res => res.json())
     .then(responce => {
@@ -48,13 +46,17 @@ export default class App extends Component {
     });
   };
 
+  selectItem(object) {
+    console.log("ran app funct");
+  }
+
   render (){
-    const { fetched, loading, sideBarData } = this.state;
+    const { fetched, loading } = this.state;
 
     let content;
 
     if (fetched){
-      content =  <Sidebar sideBarData={this.state.sideBarData}/>
+      content =  <Sidebar sideBarData={this.state.sideBarData} selectItem={this.selectItem}/>
     } else if (loading && !fetched) {
       content = <div>Loading....</div>;
     }  else {
