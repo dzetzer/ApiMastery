@@ -10,7 +10,7 @@ class Sidebar extends Component {
     {
         return (
             <section id="sidebar-list">
-            ${sideBarData
+            {sideBarData
                 .map(object => {
                     return 
                     (
