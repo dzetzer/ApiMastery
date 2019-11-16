@@ -1,4 +1,4 @@
-function getRequest(location, callback){
+function getRequest(location,callback){
     fetch(location)
     .then(response => response.json())
     .then(data => callback(data))

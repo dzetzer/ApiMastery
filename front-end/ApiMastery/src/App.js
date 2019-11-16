@@ -1,28 +1,33 @@
 import React from "react";
-import DisplayApp from "./components/DisplayApp";
+import Body from "./components/Body";
+import Sidebar from "./components/Sidebar";
 
 const Sidebar = document.querySelector(".sidebar");
 const Body = document.querySelector(".body");
 
+
 function navData()
 {
-  apiActions.getRequest("https://localhost:44386/api/series", series => {
-    Sidebar.innerHTML = <Sidebar sidebarObjects={series}/>
-  });
-}
-function navSelect()
-{
-  const navItem= document.querySelector(".nav__artists");
-  const navObject = event.target.parentElement.querySelector(
-    ".update-artist__id"
-  ).value;
-  artistsButton.addEventListener("click", function(){
-      Body.innerHTML = <Body bodyObject={navObject}/>;
-  })
+  apiActions.getRequest("https://localhost:44386/api/series", series);
+  return series;
 }
 
-export default () => (
-  <>
-    <DisplayApp/>
-  </>
-);
+const [sidebarData, setSidebarData] = useState(navData());
+const [bodyData, setBodyData] = useState(null);
+
+
+export default class App extends React.Component {
+  constructor(){
+    super();
+      this.state = {
+        sideBarData: navData(),
+      }
+  }
+  render (){
+    return (
+              <>
+                <Sidebar sideBarData={this.state.sideBarData}/>
+              </>
+    )
+  }
+};

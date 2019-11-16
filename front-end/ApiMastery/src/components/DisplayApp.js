@@ -4,14 +4,6 @@ import apiActions from '../api/ApiActions'
 import Body from "./Body";
 import Sidebar from "./Sidebar";
 
-function navData()
-{
-  apiActions.getRequest("https://localhost:44386/api/series", series);
-  return series;
-}
-
-const [sidebarData, setSidebarData] = useState(navData());
-const [bodyData, setBodyData] = useState(null);
 
 function DisplayApp() {
     render()
