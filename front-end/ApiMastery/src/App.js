@@ -64,10 +64,10 @@ export default class App extends Component {
     let content;
 
     if (fetched){
-      content = ( 
+      content = 
       <Sidebar sideBarData={this.state.sideBarData} selectItem={this.selectItem}/>,
       <Body bodyData={this.state.bodyData}/>
-      )
+      
     } else if (loading && !fetched) {
       content = <div>Loading....</div>;
     }  else {
