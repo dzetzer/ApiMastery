@@ -16,22 +16,22 @@ class Body extends Component {
         })
         .then(response => response.json())
         .then(response => console.log(response))
-        .then(this.props.apiRefresh())
+        .then(this.props.apiRefresh)
     }
     deleteRequest(location){
         fetch(location,{
             method: "DELETE",
             header: {"Content-Type": "application/json"}
         })
-        .then(this.props.apiRefresh())
+        .then(this.props.apiRefresh)
     }
-    deleteGame(){
-        const gameId = this.refs.game.value;
+    deleteGame(e){
+        const gameId = e.target.value;
         this.deleteRequest("http://localhost:52305/api/games/" + gameId)
         console.log("delete gameId " + gameId);
     }
-    deleteComment(){
-        const commentId = this.refs.comment.value;
+    deleteComment(e){
+        const commentId = e.target.value;
         this.deleteRequest("http://localhost:52305/api/comments/" + commentId)
         console.log("delete commentId " + commentId);
     }
@@ -84,9 +84,9 @@ class Body extends Component {
                         {bodyObject.games
                         .map((game, i) => {
                             return (
-                                <div>
-                                    <button onClick={this.selectGame.bind(this)} className="body-child-item" key={i} ref="game" value={game.gameId}>{game.name}</button>
-                                    <button onClick={this.deleteGame.bind(this)}>Delete</button>
+                                <div key={i}>
+                                    <button onClick={this.selectGame.bind(this)} className="body-child-item" value={game.gameId}>{game.name}</button>
+                                    <button onClick={this.deleteGame.bind(this)} value={game.gameId}>Delete</button>
                                 </div>
                             );
                         })}
@@ -113,9 +113,9 @@ class Body extends Component {
                         {bodyObject.comments
                         .map((comment, i) => {
                             return (
-                                <div>
-                                    <span className="body-child-item" key={i}>{comment.title}</span>
-                                    <button onClick={this.deleteComment.bind(this)} ref="comment" value={comment.commentId}>Delete</button>
+                                <div key={i}>
+                                    <span className="body-child-item" >{comment.title}</span>
+                                    <button onClick={this.deleteComment.bind(this)} value={comment.commentId}>Delete</button>
                                 </div>
                             );
                         })}
