@@ -16,10 +16,31 @@ class Body extends Component {
         })
         .then(response => response.json())
         .then(response => console.log(response))
-        this.props.apiRefresh();
+        .then(this.props.apiRefresh())
+    }
+    deleteRequest(location){
+        fetch(location,{
+            method: "DELETE",
+            header: {"Content-Type": "application/json"}
+        })
+        .then(this.props.apiRefresh())
+    }
+    deleteGame(){
+        const gameId = this.refs.game.value;
+        this.deleteRequest("http://localhost:52305/api/games/" + gameId)
+        console.log("delete gameId " + gameId);
+    }
+    deleteComment(){
+
     }
     postGame(){
-
+        event.preventDefault();
+        const name = this.refs.name.value;
+        const seriesId = this.props.bodyData.seriesId;
+        this.postRequest("http://localhost:52305/api/games",{
+            name: name,
+            seriesId: seriesId
+        })
     }
     postComment = event => {
         event.preventDefault();
@@ -51,10 +72,9 @@ class Body extends Component {
                     <section id="body-parent">
                         <h1 id="parent-name">{bodyObject.name}</h1>
                     </section>
-                    <section id="body-add-comment">
-                        <form onSubmit={this.postComment.bind(this)}>
-                            <input type="text" name="title" ref="title"/>
-                            <input type="text" name="body" ref="body"/>
+                    <section id="body-add-game">
+                        <form onSubmit={this.postGame.bind(this)}>
+                            <input type="text" name="name" ref="name"/>
                             <input type="submit" name="submit"/>
                         </form>
                     </section>
@@ -62,7 +82,10 @@ class Body extends Component {
                         {bodyObject.games
                         .map((game, i) => {
                             return (
-                                <button onClick={this.selectGame.bind(this)} className="body-child-item" key={i} value={game.gameId}>{game.name}</button>
+                                <div>
+                                    <button onClick={this.selectGame.bind(this)} className="body-child-item" key={i} ref="game" value={game.gameId}>{game.name}</button>
+                                    <button onClick={this.deleteGame.bind(this)}>Delete</button>
+                                </div>
                             );
                         })}
                     </section>

@@ -25,7 +25,7 @@ export default class App extends Component {
   };
 
   apiRefresh(){
-    if(this.state.sideBarType == 0) sidebarLoadSeries() 
+    if(this.state.sideBarType == 0) this.sidebarLoadSeries() 
     else this.selectGameSideBar(this.state.sideBarData.seriesId);
 
     if(this.state.bodyType == 0) this.selectSeriesBody(this.state.bodyData.seriesId);
