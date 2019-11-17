@@ -16,7 +16,7 @@ class Sidebar extends Component {
     {
         const sideBarData = this.props.sideBarData;
 
-        const content;
+        let content;
 
         //For Series
         if(this.props.sideBarType == 0)
@@ -44,7 +44,7 @@ class Sidebar extends Component {
             )
         }
         return (
-            <div>}{content}</div>
+            <div>{content}</div>
         );
     }
 }

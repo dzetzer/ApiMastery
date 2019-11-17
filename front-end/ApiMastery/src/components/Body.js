@@ -21,9 +21,9 @@ class Body extends Component {
                     </section>
                     <section id="body-child-list">
                         {bodyObject.games
-                        .map(game => {
+                        .map((game, i) => {
                             return (
-                                <span class="body-child-item">{game.name}</span>
+                                <span className="body-child-item" key={i}>{game.name}</span>
                             );
                         })}
                     </section>
@@ -40,9 +40,9 @@ class Body extends Component {
                     </section>
                     <section id="body-child-list">
                         {bodyObject.comments
-                        .map(comment => {
+                        .map((comment, i) => {
                             return (
-                                <span class="body-child-item">{game.name}</span>
+                                <span className="body-child-item" key={i}>{game.name}</span>
                             );
                         })}
                     </section>

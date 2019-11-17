@@ -6,7 +6,9 @@ import Sidebar from "./components/Sidebar";
 export default class App extends Component {
   constructor(props) {
     super(props);
-      this.selectItem = this.selectItem.bind(this);
+      this.selectSeries = this.selectSeries.bind(this);
+      this.selectGame = this.selectGame.bind(this);
+      this.sidebarLoadSeries = this.sidebarLoadSeries.bind(this);
       this.state = {
         sideBarData: [],
         sideBarType: 0,
@@ -17,7 +19,7 @@ export default class App extends Component {
       }
   }
   componentDidMount() {
-    sidebarLoadSeries();
+    this.sidebarLoadSeries();
   };
 
   sidebarLoadSeries() {
@@ -56,7 +58,7 @@ export default class App extends Component {
       sideBarData: this.state.bodyData,
       bodyData: responce,
       bodyType: 1,
-      sidebarData: 1
+      sideBarType: 1
     });
   });
   console.log(this.state.bodyData)
