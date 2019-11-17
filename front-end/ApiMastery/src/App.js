@@ -72,7 +72,7 @@ export default class App extends Component {
     if (fetched){
       content = (
         <div>
-          <Sidebar sideBarData={this.state.sideBarData} selectSeries={this.selectSeries} selectGame={this.selectGame} sideBarType={this.state.sideBarType}/>
+          <Sidebar sideBarData={this.state.sideBarData} sidebarLoadSeries={this.sidebarLoadSeries} selectSeries={this.selectSeries} selectGame={this.selectGame} sideBarType={this.state.sideBarType}/>
           <Body bodyData={this.state.bodyData} bodyType={this.state.bodyType} selectGame={this.selectGame}/>
         </div>
       )

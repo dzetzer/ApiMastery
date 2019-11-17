@@ -11,6 +11,10 @@ class Sidebar extends Component {
         this.props.selectGame(gameId);
         console.log("return gameId "+ gameId)
     }
+    sidebarLoadSeries() {
+        this.props.sidebarLoadSeries();
+        console.log("load all series in sidebar")
+    }
 
     render()
     {
@@ -35,7 +39,7 @@ class Sidebar extends Component {
         {
             content = (
                 <section id="sidebar-list">
-                <button>Return to Series</button>
+                <button onClick={this.sidebarLoadSeries.bind(this)}>Return to Series</button>
                 {sideBarData.games
                     .map((game, i) => {
                         return <button onClick={this.selectGame.bind(this)} className="sidebar-item" key={i} value={game.gameId}>{game.name}</button>
