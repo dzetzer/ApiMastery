@@ -3,8 +3,9 @@ import React, {Component} from 'react';
 class Body extends Component {
     selectGame(e) {
         const gameId = e.target.value;
-        this.props.selectGame(gameId);
-        console.log("return gameId "+ gameId)
+        const seriesId = this.props.bodyData.seriesId;
+        this.props.selectGame(gameId,seriesId);
+        console.log("return gameId "+ gameId+"return seriesId "+ seriesId)
     }
 
     render()

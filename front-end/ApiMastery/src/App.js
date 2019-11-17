@@ -50,14 +50,20 @@ export default class App extends Component {
   console.log(this.state.bodyData)
   };
 
-  selectGame(gameId) {
+  selectGame(gameId, seriesId) {
   fetch("http://localhost:52305/api/games/" + gameId)
   .then(res => res.json())
   .then(responce => {
     this.setState({
-      sideBarData: this.state.bodyData,
       bodyData: responce,
       bodyType: 1,
+    });
+  });
+  fetch("http://localhost:52305/api/series/" + seriesId)
+  .then(res => res.json())
+  .then(responce => {
+    this.setState({
+      sideBarData: responce,
       sideBarType: 1
     });
   });

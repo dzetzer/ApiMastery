@@ -8,8 +8,9 @@ class Sidebar extends Component {
     }
     selectGame(e) {
         const gameId = e.target.value;
-        this.props.selectGame(gameId);
-        console.log("return gameId "+ gameId)
+        const seriesId = this.props.sideBarData.seriesId;
+        this.props.selectGame(gameId,seriesId);
+        console.log("return gameId "+ gameId +"return seriesId "+ seriesId)
     }
     sidebarLoadSeries() {
         this.props.sidebarLoadSeries();
