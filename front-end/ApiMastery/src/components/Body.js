@@ -7,6 +7,29 @@ class Body extends Component {
         this.props.selectGame(gameId,seriesId);
         console.log("return gameId "+ gameId+"return seriesId "+ seriesId)
     }
+    postRequest(location, requestBody){
+        fetch(location,{
+            method:"POST",
+            body: JSON.stringify(requestBody),
+            headers: {"Content-Type": "application/json"}
+        })
+        .then(response => response.json())
+        .then(response => console.log(response))
+    }
+    postGame(){
+
+    }
+    postComment = event => {
+        event.preventDefault();
+        const title = this.refs.title.value;
+        const body = this.refs.body.value;
+        const gameId = this.props.bodyData.gameId;
+        this.postRequest("http://localhost:52305/api/comments",{
+            title: title,
+            body: body,
+            gameId: gameId
+        })
+    }
 
     render()
     {
@@ -44,6 +67,13 @@ class Body extends Component {
                 <div>
                     <section id="body-parent">
                         <h1 id="parent-name">{bodyObject.name}</h1>
+                    </section>
+                    <section id="body-add-comment">
+                        <form onSubmit={this.postComment.bind(this)}>
+                            <input type="text" name="title" ref="title"/>
+                            <input type="text" name="body" ref="body"/>
+                            <input type="submit" name="submit"/>
+                        </form>
                     </section>
                     <section id="body-child-list">
                         {bodyObject.comments
