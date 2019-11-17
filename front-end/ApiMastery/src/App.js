@@ -1,12 +1,14 @@
 import React, {Component} from "react";
-import apiActions from "../src/api/ApiActions"
 import Body from "./components/Body";
 import Sidebar from "./components/Sidebar";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-      this.selectSeries = this.selectSeries.bind(this);
+      this.apiRefresh = this.apiRefresh.bind(this);
+      this.selectSeriesBody = this.selectSeriesBody.bind(this);
+      this.selectGameBody = this.selectGameBody.bind(this);
+      this.selectGameSideBar = this.selectGameSideBar.bind(this);
       this.selectGame = this.selectGame.bind(this);
       this.sidebarLoadSeries = this.sidebarLoadSeries.bind(this);
       this.state = {
@@ -21,6 +23,14 @@ export default class App extends Component {
   componentDidMount() {
     this.sidebarLoadSeries();
   };
+
+  apiRefresh(){
+    if(this.state.sideBarType == 0) sidebarLoadSeries() 
+    else this.selectGameSideBar(this.state.sideBarData.seriesId);
+
+    if(this.state.bodyType == 0) this.selectSeriesBody(this.state.bodyData.seriesId);
+    else this.selectGameBody(this.state.bodyData.gameId);
+  }
 
   sidebarLoadSeries() {
     this.setState({
@@ -38,7 +48,7 @@ export default class App extends Component {
   });
   }
 
-  selectSeries(seriesId) {
+  selectSeriesBody(seriesId) {
   fetch("http://localhost:52305/api/series/" + seriesId)
   .then(res => res.json())
   .then(responce => {
@@ -50,16 +60,19 @@ export default class App extends Component {
   console.log(this.state.bodyData)
   };
 
-  selectGame(gameId, seriesId) {
-  fetch("http://localhost:52305/api/games/" + gameId)
-  .then(res => res.json())
-  .then(responce => {
-    this.setState({
-      bodyData: responce,
-      bodyType: 1,
+  selectGameBody(gameId){
+    fetch("http://localhost:52305/api/games/" + gameId)
+    .then(res => res.json())
+    .then(responce => {
+      this.setState({
+        bodyData: responce,
+        bodyType: 1,
+      });
     });
-  });
-  fetch("http://localhost:52305/api/series/" + seriesId)
+  }
+
+  selectGameSideBar(seriesId){
+    fetch("http://localhost:52305/api/series/" + seriesId)
   .then(res => res.json())
   .then(responce => {
     this.setState({
@@ -67,7 +80,12 @@ export default class App extends Component {
       sideBarType: 1
     });
   });
-  console.log(this.state.bodyData)
+  }
+
+  selectGame(gameId, seriesId) {
+    this.selectGameBody(gameId);
+    this.selectGameSideBar(seriesId);
+    console.log(this.state.bodyData)
   };
 
   render (){
@@ -78,8 +96,8 @@ export default class App extends Component {
     if (fetched){
       content = (
         <div>
-          <Sidebar sideBarData={this.state.sideBarData} sidebarLoadSeries={this.sidebarLoadSeries} selectSeries={this.selectSeries} selectGame={this.selectGame} sideBarType={this.state.sideBarType}/>
-          <Body bodyData={this.state.bodyData} bodyType={this.state.bodyType} selectGame={this.selectGame}/>
+          <Sidebar sideBarData={this.state.sideBarData} sidebarLoadSeries={this.sidebarLoadSeries} selectSeriesBody={this.selectSeriesBody} selectGame={this.selectGame} sideBarType={this.state.sideBarType}/>
+          <Body bodyData={this.state.bodyData} bodyType={this.state.bodyType} selectGame={this.selectGame} apiRefresh={this.apiRefresh}/>
         </div>
       )
     } else if (loading && !fetched) {

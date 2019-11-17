@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class Sidebar extends Component {
     selectSeries(e) {
         const seriesId = e.target.value;
-        this.props.selectSeries(seriesId);
+        this.props.selectSeriesBody(seriesId);
         console.log("return seriesId "+ seriesId)
     }
     selectGame(e) {

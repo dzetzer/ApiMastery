@@ -5,6 +5,7 @@ class Body extends Component {
         const gameId = e.target.value;
         const seriesId = this.props.bodyData.seriesId;
         this.props.selectGame(gameId,seriesId);
+
         console.log("return gameId "+ gameId+"return seriesId "+ seriesId)
     }
     postRequest(location, requestBody){
@@ -15,6 +16,7 @@ class Body extends Component {
         })
         .then(response => response.json())
         .then(response => console.log(response))
+        this.props.apiRefresh();
     }
     postGame(){
 
@@ -48,6 +50,13 @@ class Body extends Component {
                 <div>
                     <section id="body-parent">
                         <h1 id="parent-name">{bodyObject.name}</h1>
+                    </section>
+                    <section id="body-add-comment">
+                        <form onSubmit={this.postComment.bind(this)}>
+                            <input type="text" name="title" ref="title"/>
+                            <input type="text" name="body" ref="body"/>
+                            <input type="submit" name="submit"/>
+                        </form>
                     </section>
                     <section id="body-child-list">
                         {bodyObject.games
@@ -88,7 +97,7 @@ class Body extends Component {
         }
         return (
         <div>{content}</div>
-        );
+        ); 
     }
 }
 
