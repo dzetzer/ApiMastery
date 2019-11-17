@@ -18,7 +18,7 @@ namespace ApiMastery.Repositories
 
         public override Game GetById(int id)
         {
-            return db.Set<Game>().Where(i => i.GameId == id).Include("Games").FirstOrDefault();
+            return db.Set<Game>().Where(i => i.GameId == id).Include("Comments").FirstOrDefault();
         }
     }
 }

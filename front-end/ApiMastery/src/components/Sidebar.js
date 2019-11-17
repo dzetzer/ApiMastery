@@ -18,7 +18,7 @@ class Sidebar extends Component {
 
         let content;
 
-        //For Series
+        //For All Series
         if(this.props.sideBarType == 0)
         {
             content = (
@@ -30,15 +30,15 @@ class Sidebar extends Component {
                 </section>
             )
         }
-        //For Game
+        //For One Series
         else
         {
             content = (
                 <section id="sidebar-list">
                 <button>Return to Series</button>
-                {sideBarData
-                    .map((object, i) => {
-                        return <button onClick={this.selectGame.bind(this)} className="sidebar-item" key={i} value={object.gameId}>{object.name}</button>
+                {sideBarData.games
+                    .map((game, i) => {
+                        return <button onClick={this.selectGame.bind(this)} className="sidebar-item" key={i} value={game.gameId}>{game.name}</button>
                     })}
                 </section>
             )

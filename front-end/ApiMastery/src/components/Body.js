@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
 
 class Body extends Component {
+    selectGame(e) {
+        const gameId = e.target.value;
+        this.props.selectGame(gameId);
+        console.log("return gameId "+ gameId)
+    }
+
     render()
     {
         const bodyObject = this.props.bodyData;
@@ -23,7 +29,7 @@ class Body extends Component {
                         {bodyObject.games
                         .map((game, i) => {
                             return (
-                                <span className="body-child-item" key={i}>{game.name}</span>
+                                <button onClick={this.selectGame.bind(this)} className="body-child-item" key={i} value={game.gameId}>{game.name}</button>
                             );
                         })}
                     </section>
@@ -42,7 +48,7 @@ class Body extends Component {
                         {bodyObject.comments
                         .map((comment, i) => {
                             return (
-                                <span className="body-child-item" key={i}>{game.name}</span>
+                                <span className="body-child-item" key={i}>{comment.title}</span>
                             );
                         })}
                     </section>
