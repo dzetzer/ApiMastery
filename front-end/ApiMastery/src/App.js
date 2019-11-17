@@ -24,6 +24,7 @@ import Sidebar from "./components/Sidebar";
 export default class App extends Component {
   constructor(props) {
     super(props);
+      this.selectItem = this.selectItem.bind(this);
       this.state = {
         sideBarData: [],
         bodyData: null,
@@ -46,9 +47,16 @@ export default class App extends Component {
     });
   };
 
-  selectItem(object) {
-    console.log("ran app funct");
-  }
+  selectItem(seriesId) {
+  fetch("http://localhost:52305/api/series/" + seriesId)
+  .then(res => res.json())
+  .then(responce => {
+    this.setState({
+      bodyData: responce
+    });
+  });
+  console.log(this.state.bodyData)
+  };
 
   render (){
     const { fetched, loading } = this.state;
@@ -56,7 +64,10 @@ export default class App extends Component {
     let content;
 
     if (fetched){
-      content =  <Sidebar sideBarData={this.state.sideBarData} selectItem={this.selectItem}/>
+      content = ( 
+      <Sidebar sideBarData={this.state.sideBarData} selectItem={this.selectItem}/>,
+      <Body bodyData={this.state.bodyData}/>
+      )
     } else if (loading && !fetched) {
       content = <div>Loading....</div>;
     }  else {

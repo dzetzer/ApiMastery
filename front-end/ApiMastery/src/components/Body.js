@@ -1,25 +1,29 @@
 import React, {Component} from 'react';
 
 class Body extends Component {
-    constructor(bodyObject)
+    constructor(props)
     {
-        this.bodyObject = bodyObject;
+        super(props);
+        this.state = {
+            bodyObject: props.bodyData
+        }
     }
     render()
     {
+        const bodyObject = this.state.bodyObject;
+
         return (
             <div>
                 <section id="body-parent">
-                    <h1 id="parent-name">${bodyObject.name}</h1>
+                    <h1 id="parent-name">{bodyObject.name}</h1>
                 </section>
                 <section id="body-child-list">
-                    ${bodyObject.games
+                    {bodyObject.games
                     .map(game => {
                         return (
-                            <span class="body-child-item">${game.name}</span>
+                            <span class="body-child-item">{game.name}</span>
                         );
-                    })
-                    .join("")}
+                    })}
                 </section>
             </div>
         );
