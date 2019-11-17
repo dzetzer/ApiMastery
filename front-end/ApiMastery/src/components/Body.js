@@ -5,12 +5,12 @@ class Body extends Component {
     {
         super(props);
         this.state = {
-            bodyObject: props.bodyData
+            bodyObject: props.bodyData,
         }
     }
     render()
     {
-        const bodyObject = this.state.bodyObject;
+        const bodyObject = this.props.bodyData;
 
         let content;
 
