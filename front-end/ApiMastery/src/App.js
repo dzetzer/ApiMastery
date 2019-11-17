@@ -3,56 +3,60 @@ import apiActions from "../src/api/ApiActions"
 import Body from "./components/Body";
 import Sidebar from "./components/Sidebar";
 
-// const Sidebar = document.querySelector(".sidebar");
-// const Body = document.querySelector(".body");
-
-
-// function navData(stateProp)
-// {
-//   apiActions.getRequest("http://localhost:52305/api/series", series => {
-//     stateProp = series;
-//     console.log(series);
-//   });
-// }
-
-// const seriesData = null;
-// navData(seriesData);
-// const [sidebarData, setSidebarData] = useState(navData());
-// const [bodyData, setBodyData] = useState(null);
-
-
 export default class App extends Component {
   constructor(props) {
     super(props);
       this.selectItem = this.selectItem.bind(this);
       this.state = {
         sideBarData: [],
+        sideBarType: 0,
         bodyData: null,
+        bodyType: 0,
         fetched: false,
         loading: false  
       }
   }
   componentDidMount() {
-        this.setState({
-        loading: true 
-    });
-    fetch("http://localhost:52305/api/series")
-    .then(res => res.json())
-    .then(responce => {
-      this.setState({
-        sideBarData: responce,
-        loading: true,
-        fetched: true
-      });
-    });
+    sidebarLoadSeries();
   };
 
-  selectItem(seriesId) {
+  sidebarLoadSeries() {
+    this.setState({
+      loading: true 
+  });
+  fetch("http://localhost:52305/api/series")
+  .then(res => res.json())
+  .then(responce => {
+    this.setState({
+      sideBarData: responce,
+      sideBarType: 0,
+      loading: true,
+      fetched: true
+    });
+  });
+  }
+
+  selectSeries(seriesId) {
   fetch("http://localhost:52305/api/series/" + seriesId)
   .then(res => res.json())
   .then(responce => {
     this.setState({
-      bodyData: responce
+      bodyData: responce,
+      bodyType: 0
+    });
+  });
+  console.log(this.state.bodyData)
+  };
+
+  selectGame(gameId) {
+  fetch("http://localhost:52305/api/games/" + gameId)
+  .then(res => res.json())
+  .then(responce => {
+    this.setState({
+      sideBarData: this.state.bodyData,
+      bodyData: responce,
+      bodyType: 1,
+      sidebarData: 1
     });
   });
   console.log(this.state.bodyData)
@@ -66,8 +70,8 @@ export default class App extends Component {
     if (fetched){
       content = (
         <div>
-          <Sidebar sideBarData={this.state.sideBarData} selectItem={this.selectItem}/>
-          <Body bodyData={this.state.bodyData}/>
+          <Sidebar sideBarData={this.state.sideBarData} selectSeries={this.selectSeries} selectGame={this.selectGame} sideBarType={this.state.sideBarType}/>
+          <Body bodyData={this.state.bodyData} bodyType={this.state.bodyType} selectGame={this.selectGame}/>
         </div>
       )
     } else if (loading && !fetched) {

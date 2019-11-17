@@ -1,13 +1,6 @@
 import React, {Component} from 'react';
 
 class Body extends Component {
-    constructor(props)
-    {
-        super(props);
-        this.state = {
-            bodyObject: props.bodyData,
-        }
-    }
     render()
     {
         const bodyObject = this.props.bodyData;
@@ -18,7 +11,8 @@ class Body extends Component {
         {
             content = <div>Select an Item</div>
         }
-        else
+        //For Series
+        else if (this.props.bodyType == 0)
         {
             content = (
                 <div>
@@ -28,6 +22,25 @@ class Body extends Component {
                     <section id="body-child-list">
                         {bodyObject.games
                         .map(game => {
+                            return (
+                                <span class="body-child-item">{game.name}</span>
+                            );
+                        })}
+                    </section>
+                </div>
+            )
+        }
+        //For Games
+        else
+        {
+            content = (
+                <div>
+                    <section id="body-parent">
+                        <h1 id="parent-name">{bodyObject.name}</h1>
+                    </section>
+                    <section id="body-child-list">
+                        {bodyObject.comments
+                        .map(comment => {
                             return (
                                 <span class="body-child-item">{game.name}</span>
                             );
