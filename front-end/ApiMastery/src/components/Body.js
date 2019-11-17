@@ -31,7 +31,9 @@ class Body extends Component {
         console.log("delete gameId " + gameId);
     }
     deleteComment(){
-
+        const commentId = this.refs.comment.value;
+        this.deleteRequest("http://localhost:52305/api/comments/" + commentId)
+        console.log("delete commentId " + commentId);
     }
     postGame(){
         event.preventDefault();
@@ -111,7 +113,10 @@ class Body extends Component {
                         {bodyObject.comments
                         .map((comment, i) => {
                             return (
-                                <span className="body-child-item" key={i}>{comment.title}</span>
+                                <div>
+                                    <span className="body-child-item" key={i}>{comment.title}</span>
+                                    <button onClick={this.deleteComment.bind(this)} ref="comment" value={comment.commentId}>Delete</button>
+                                </div>
                             );
                         })}
                     </section>
