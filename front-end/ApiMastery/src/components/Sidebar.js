@@ -28,10 +28,10 @@ class Sidebar extends Component {
         {
             content = (
                 <section id="sidebar-list">
-                    <aside>All Series:</aside>
+                    <h1 id="sidebar-series-title">All Series:</h1>
                 {sideBarData
                     .map((object, i) => {
-                        return <button onClick={this.selectSeries.bind(this)} className="sidebar-item" key={i} value={object.seriesId}>{object.name}</button>
+                        return <button className="button" onClick={this.selectSeries.bind(this)} key={i} value={object.seriesId}>{object.name}</button>
                     })}
                 </section>
             )
@@ -41,16 +41,16 @@ class Sidebar extends Component {
         {
             content = (
                 <section id="sidebar-list">
-                <button onClick={this.sidebarLoadSeries.bind(this)}>Return to Series</button>
+                <button className="button" onClick={this.sidebarLoadSeries.bind(this)}>Return to Series</button>
                 {sideBarData.games
                     .map((game, i) => {
-                        return <button onClick={this.selectGame.bind(this)} className="sidebar-item" key={i} value={game.gameId}>{game.name}</button>
+                        return <button className="button" onClick={this.selectGame.bind(this)} key={i} value={game.gameId}>{game.name}</button>
                     })}
                 </section>
             )
         }
         return (
-            <div>{content}</div>
+            <div id="sidebar">{content}</div>
         );
     }
 }

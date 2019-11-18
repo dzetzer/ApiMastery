@@ -78,39 +78,42 @@ class Body extends Component {
         else if (this.props.bodyType == 0)
         {
             content = (
-                <div>
+                <div id="body-div">
                     <section id="body-parent">
                         <h1 id="parent-name">{bodyObject.name}</h1>
                     </section>
-                    <section id="body-add-game">
+                    <section id="body-add">
+                    <h2>Add Game:</h2>
                         <form onSubmit={this.postGame.bind(this)}>
+                            <p>Name</p>
                             <input type="text" name="name" ref="name"/>
-                            <input type="submit" name="submit"/>
+                            <input type="submit" className="button" name="submit"/>
                         </form>
                     </section>
                     <section id="body-child-list">
+                        <h2>Games:</h2>
                         {bodyObject.games
                         .map((game, i) => {
                             let content = (
                                 <div>
-                                    <button onClick={this.selectGame.bind(this)} className="body-child-item" value={game.gameId}>{game.name}</button>
-                                    <button onClick={this.deleteGame.bind(this)} value={game.gameId}>Delete</button>
-                                    <button onClick={this.selectUpdate.bind(this)} value={game.gameId}>Edit</button>
+                                    <button onClick={this.selectGame.bind(this)} className="button" value={game.gameId}>{game.name}</button>
+                                    <button onClick={this.deleteGame.bind(this)} className="button" value={game.gameId}>Delete</button>
+                                    <button onClick={this.selectUpdate.bind(this)} className="button" value={game.gameId}>Edit</button>
                                 </div>
                             )
                             if(game.gameId == this.props.updateObjectId)
                             {
                                 content = (
                                     <div>
-                                        <button onClick={this.selectGame.bind(this)} className="body-child-item" value={game.gameId}>{game.name}</button>
-                                        <button onClick={this.deleteGame.bind(this)} value={game.gameId}>Delete</button>
-                                        <button onClick={this.selectUpdate.bind(this)} value={game.gameId}>Edit</button>
+                                        <button onClick={this.selectGame.bind(this)} className="button" value={game.gameId}>{game.name}</button>
+                                        <button onClick={this.deleteGame.bind(this)} className="button" value={game.gameId}>Delete</button>
+                                        <button onClick={this.selectUpdate.bind(this)} className="button" value={game.gameId}>Edit</button>
                                         <Update updateObjectId={this.props.updateObjectId} updateObject={game} updateType={0} apiRefresh={this.props.apiRefresh}/>
                                     </div>
                                 )
                             }
                             return (
-                                <div key={i}>{content}</div>
+                                <div className="body-child" key={i}>{content}</div>
                             );
                         })}
                     </section>
@@ -121,42 +124,46 @@ class Body extends Component {
         else
         {
             content = (
-                <div>
+                <div id="body-div">
                     <section id="body-parent">
                         <h1 id="parent-name">{bodyObject.name}</h1>
                     </section>
-                    <section id="body-add-comment">
+                    <section id="body-add">
+                    <h2>Add Comment:</h2>
                         <form onSubmit={this.postComment.bind(this)}>
+                            <p>Title</p>
                             <input type="text" name="title" ref="title"/>
+                            <p>Body</p>
                             <input type="text" name="body" ref="body"/>
-                            <input type="submit" name="submit"/>
+                            <input type="submit" className="button" name="submit"/>
                         </form>
                     </section>
                     <section id="body-child-list">
+                    <h2>Comments:</h2>
                         {bodyObject.comments
                         .map((comment, i) => {
                             let content = (
-                                <div>
-                                    <span className="body-child-item" >{comment.title}</span>
-                                    <span className="body-child-item" >{comment.body}</span>
-                                    <button onClick={this.deleteComment.bind(this)} value={comment.commentId}>Delete</button>
-                                    <button onClick={this.selectUpdate.bind(this)} value={comment.commentId}>Edit</button>
+                                <div className="body-comment">
+                                    <h3 className="body-comment-title" >{comment.title}</h3>
+                                    <span className="body-comment-body" >{comment.body}</span>
+                                    <button onClick={this.deleteComment.bind(this)} className="button" value={comment.commentId}>Delete</button>
+                                    <button onClick={this.selectUpdate.bind(this)} className="button" value={comment.commentId}>Edit</button>
                                 </div>
                             )
                             if(comment.commentId == this.props.updateObjectId)
                             {
                                 content = (
-                                    <div>
-                                        <span className="body-child-item" >{comment.title}</span>
-                                        <span className="body-child-item" >{comment.body}</span>
-                                        <button onClick={this.deleteComment.bind(this)} value={comment.commentId}>Delete</button>
-                                        <button onClick={this.selectUpdate.bind(this)} value={comment.commentId}>Edit</button>
+                                    <div className="body-comment">
+                                        <h3 className="body-comment-title" >{comment.title}</h3>
+                                        <span className="body-comment-body" >{comment.body}</span>
+                                        <button onClick={this.deleteComment.bind(this)} className="button" value={comment.commentId}>Delete</button>
+                                        <button onClick={this.selectUpdate.bind(this)} className="button" value={comment.commentId}>Edit</button>
                                         <Update updateObjectId={this.props.updateObjectId} updateObject={comment} updateType={1} apiRefresh={this.props.apiRefresh}/>
                                     </div>
                                 )
                             }
                             return (
-                                <div key={i}>{content}</div>
+                                <div className="body-child" key={i}>{content}</div>
                             );
                         })}
                     </section>
@@ -164,7 +171,7 @@ class Body extends Component {
             )
         }
         return (
-        <div>{content}</div>
+        <div id="body">{content}</div>
         ); 
     }
 }

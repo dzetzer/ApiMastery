@@ -104,7 +104,7 @@ export default class App extends Component {
 
     if (fetched){
       content = (
-        <div>
+        <div id="app-components">
           <Sidebar 
           sideBarData={this.state.sideBarData}
           sidebarLoadSeries={this.sidebarLoadSeries} 
@@ -127,6 +127,6 @@ export default class App extends Component {
     }  else {
       content = <div />;
     }
-    return <div>{content}</div>;  
+    return <div id="app-main">{content}</div>;  
   }
 };

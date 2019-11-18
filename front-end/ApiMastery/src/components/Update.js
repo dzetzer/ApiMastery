@@ -79,8 +79,9 @@ class Update extends Component {
     {
       content = (
       <form onSubmit={this.updateGame.bind(this)}>
+        <p>New Name</p>
         <input type="text" ref="name" value={this.state.name}  onChange={this.handleNameChange.bind(this)}/>
-        <input type="submit" name="submit"/>
+        <input className="button" type="submit" name="submit"/>
       </form>
       )
     }
@@ -89,15 +90,17 @@ class Update extends Component {
     {
       content = (
       <form onSubmit={this.updateComment.bind(this)}>
+        <p>New Title</p>
         <input type="text" ref="title" value={this.state.title} onChange={this.handleTitleChange.bind(this)}/>
+        <p>New Body</p>
         <input type="text" ref="body" value={this.state.body}  onChange={this.handleBodyChange.bind(this)}/>
-        <input type="submit" name="submit"/>
+        <input className="button" type="submit" name="submit"/>
       </form>
       )
     }
 
     return (
-      <div>{content}</div>
+      <div className="update-form">{content}</div>
       ); 
   }
 }
