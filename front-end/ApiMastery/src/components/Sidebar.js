@@ -28,6 +28,7 @@ class Sidebar extends Component {
         {
             content = (
                 <section id="sidebar-list">
+                    <aside>All Series:</aside>
                 {sideBarData
                     .map((object, i) => {
                         return <button onClick={this.selectSeries.bind(this)} className="sidebar-item" key={i} value={object.seriesId}>{object.name}</button>

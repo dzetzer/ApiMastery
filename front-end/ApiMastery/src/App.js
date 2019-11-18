@@ -11,11 +11,13 @@ export default class App extends Component {
       this.selectGameSideBar = this.selectGameSideBar.bind(this);
       this.selectGame = this.selectGame.bind(this);
       this.sidebarLoadSeries = this.sidebarLoadSeries.bind(this);
+      this.selectUpdate = this.selectUpdate.bind(this);
       this.state = {
         sideBarData: [],
         sideBarType: 0,
         bodyData: null,
         bodyType: 0,
+        updateObjectId: 1,
         fetched: false,
         loading: false  
       }
@@ -88,6 +90,12 @@ export default class App extends Component {
     console.log(this.state.bodyData)
   };
 
+  selectUpdate(updateObjectId){
+    this.setState({
+      updateObjectId: updateObjectId
+    });
+  }
+
   render (){
     const { fetched, loading } = this.state;
 
@@ -96,8 +104,21 @@ export default class App extends Component {
     if (fetched){
       content = (
         <div>
-          <Sidebar sideBarData={this.state.sideBarData} sidebarLoadSeries={this.sidebarLoadSeries} selectSeriesBody={this.selectSeriesBody} selectGame={this.selectGame} sideBarType={this.state.sideBarType}/>
-          <Body bodyData={this.state.bodyData} bodyType={this.state.bodyType} selectGame={this.selectGame} apiRefresh={this.apiRefresh}/>
+          <Sidebar 
+          sideBarData={this.state.sideBarData}
+          sidebarLoadSeries={this.sidebarLoadSeries} 
+          selectSeriesBody={this.selectSeriesBody} 
+          selectGame={this.selectGame} 
+          sideBarType={this.state.sideBarType}
+          />
+          <Body 
+          bodyData={this.state.bodyData} 
+          bodyType={this.state.bodyType} 
+          selectGame={this.selectGame} 
+          apiRefresh={this.apiRefresh} 
+          updateObjectId={this.state.updateObjectId} 
+          selectUpdate={this.selectUpdate}
+          />
         </div>
       )
     } else if (loading && !fetched) {
