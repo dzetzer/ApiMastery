@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Body from "./components/Body";
 import Sidebar from "./components/Sidebar";
+import "./style/index.css";
 
 export default class App extends Component {
   constructor(props) {
