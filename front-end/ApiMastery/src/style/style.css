@@ -1,0 +1,67 @@
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.button{
+    background-color: rgb(195, 235, 252);
+    text-align: center;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+#app-components{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+#sidebar{
+    background-color: rgb(73, 138, 236);
+    position: relative;
+    width: 35%;
+    min-height: 100%;
+}
+#sidebar-list{
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+}
+#sidebar-series-title{
+    display: flex;
+    justify-content: center;
+}
+
+#body{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(195, 235, 252);
+    width: 100%;
+}
+#body-div{
+    width: 100%;
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+#body-parent,#body-add,#body-child-list{
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgb(73, 138, 236);
+    border-radius: 0.5rem;
+}
+.body-child{
+    border: 1rem;
+    border-width: 0.5;
+    border-style: solid;
+    padding: 1rem;
+    margin: 0.5rem;
+}
+.body-comment{
+    display: flex;
+    flex-direction: column;
+}
