@@ -13,23 +13,27 @@ class Update extends Component {
       event.preventDefault();
       const name = this.refs.name.value;
       const seriesId = this.props.updateObject.seriesId;
-      putRequest("http://localhost:52305/api/games/" + gameId,{
+      const gameId = this.props.updateObjectId;
+      this.putRequest("http://localhost:52305/api/games/" + this.props.updateObjectId,{
           name: name,
-          seriesId: seriesId
+          seriesId: seriesId,
+          gameId: gameId
       })
-      this.props.updateObjectId = null;
+      //this.props.updateObjectId = null;
   }
   updateComment(){
       event.preventDefault();
       const title = this.refs.title.value;
       const body = this.refs.body.value;
       const gameId = this.props.updateObject.gameId;
-      putRequest("http://localhost:52305/api/comments/" + commentId,{
+      const commentId = this.props.updateObjectId;
+      this.putRequest("http://localhost:52305/api/comments/" + this.props.updateObjectId,{
           title: title,
           body: body,
-          gameId: gameId
+          gameId: gameId,
+          commentId: commentId
       })
-      this.props.updateObjectId = null;
+      //this.props.updateObjectId = null;
   }
   render()
   {
