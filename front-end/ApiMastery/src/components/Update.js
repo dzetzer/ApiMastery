@@ -1,6 +1,39 @@
 import React, {Component} from 'react';
 
 class Update extends Component {
+  constructor(props){
+    super(props);
+    if(this.props.updateType == 0)
+    {
+      this.state = {
+        name: this.props.updateObject.name
+      }
+    }
+    else
+    {
+      this.state = {
+        title: this.props.updateObject.title,
+        body: this.props.updateObject.body
+      }
+    }
+    
+  }
+  handleNameChange(event){
+    this.setState({
+      name: event.target.value
+    })
+  }
+  handleTitleChange(event){
+    this.setState({
+      title: event.target.value
+    })
+  }
+  handleBodyChange(event){
+    this.setState({
+      body: event.target.value
+    })
+  }
+
   putRequest(location, requestBody){
     fetch(location,{
         method:"PUT",
@@ -46,7 +79,7 @@ class Update extends Component {
     {
       content = (
       <form onSubmit={this.updateGame.bind(this)}>
-        <input type="text" ref="name" value={updateObject.name}/>
+        <input type="text" ref="name" value={this.state.name}  onChange={this.handleNameChange.bind(this)}/>
         <input type="submit" name="submit"/>
       </form>
       )
@@ -56,8 +89,8 @@ class Update extends Component {
     {
       content = (
       <form onSubmit={this.updateComment.bind(this)}>
-        <input type="text" ref="title" value={updateObject.title}/>
-        <input type="text" ref="body" value={updateObject.body}/>
+        <input type="text" ref="title" value={this.state.title} onChange={this.handleTitleChange.bind(this)}/>
+        <input type="text" ref="body" value={this.state.body}  onChange={this.handleBodyChange.bind(this)}/>
         <input type="submit" name="submit"/>
       </form>
       )

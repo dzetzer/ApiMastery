@@ -17,7 +17,7 @@ export default class App extends Component {
         sideBarType: 0,
         bodyData: null,
         bodyType: 0,
-        updateObjectId: 1,
+        updateObjectId: null,
         fetched: false,
         loading: false  
       }
